@@ -57,7 +57,7 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    saidx_t n = 0;
+    saidx64_t n = 0;
     sauchar_t *T;
     int t;
     if ((t = load_singleline_file_into_memory_dna(filename, (char **) &T, &n)) < 0)
