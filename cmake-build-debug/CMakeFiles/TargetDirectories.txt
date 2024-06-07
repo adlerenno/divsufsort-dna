@@ -1,0 +1,4 @@
+/Users/eadler/Documents/projects/bwt/vergleich/divsufsort/cmake-build-debug/CMakeFiles/dss.dir
+/Users/eadler/Documents/projects/bwt/vergleich/divsufsort/cmake-build-debug/CMakeFiles/dss-cli.dir
+/Users/eadler/Documents/projects/bwt/vergleich/divsufsort/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/eadler/Documents/projects/bwt/vergleich/divsufsort/cmake-build-debug/CMakeFiles/rebuild_cache.dir

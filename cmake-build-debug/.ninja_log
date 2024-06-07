@@ -1,0 +1,5 @@
+# ninja log v5
+4	263	1717759330827904821	CMakeFiles/dss.dir/raw_input_dna.c.o	680e2128482aca25
+3	243	1717759330807768791	CMakeFiles/dss.dir/main.c.o	54dfc1dbac5ed464
+5	218	1717759330782734218	CMakeFiles/dss.dir/raw_output_dna.c.o	371747f37f6b816c
+9	938	1717759568075535758	build.ninja	fca7352e315cde1c
