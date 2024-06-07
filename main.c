@@ -44,12 +44,12 @@ int main(int argc, char **argv) {
     bool param_missing = false;
     if (strcmp(filename, "") == 0)
     {
-        printf("Input file required.");
+        printf("Input file required.\n");
         param_missing = true;
     }
     if (strcmp(filename, "") == 0)
     {
-        printf("Output file required.");
+        printf("Output file required.\n");
         param_missing = true;
     }
     if (param_missing)
@@ -62,9 +62,11 @@ int main(int argc, char **argv) {
     int t;
     if ((t = load_singleline_file_into_memory_dna(filename, (char **) &T, &n)) < 0)
     {
-        printf("Loading file failed.");
+        printf("Loading file failed.\n");
         return t;
     }
+    printf("First loaded char: %c", *T);
+    printf("Loaded %d characters.\n", (int) n);
 
     if ((t = divbwt(T, T, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
     {
@@ -72,7 +74,7 @@ int main(int argc, char **argv) {
     }
     else
     {
-        fprintf(stderr, "Divsufsort failed.");
+        fprintf(stderr, "Divsufsort failed.\n");
         return t;
     }
     return 0;
