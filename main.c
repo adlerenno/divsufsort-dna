@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <errno.h>
+#include <unistd.h>
 #include "raw_input_dna.h"
 #include "raw_output_dna.h"
 
