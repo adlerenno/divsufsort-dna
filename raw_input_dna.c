@@ -11,7 +11,7 @@
 #include <math.h>
 #include <assert.h>
 #include <sys/errno.h>
-#include <libc.h>
+#include <string.h>
 
 int load_singleline_file_into_memory_dna(const char *filename, char **word, int32_t *word_length)
 {
