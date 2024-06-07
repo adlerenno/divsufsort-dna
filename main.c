@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <getopt.h>
 //#include <divsufsort64.h>
-#include <divsufsort.h>
+#include <divsufsort64.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
@@ -65,10 +65,10 @@ int main(int argc, char **argv) {
         printf("Loading file failed.\n");
         return t;
     }
-    printf("First loaded char: %c", *T);
+    printf("First loaded char: %c\n", *T);
     printf("Loaded %d characters.\n", (int) n);
 
-    if ((t = divbwt(T, T, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
+    if ((t = divbwt64(T, T, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
     {
         write_memory_to_file_dna(output_filename, (char **) &T, 1);
     }

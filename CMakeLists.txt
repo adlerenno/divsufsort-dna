@@ -25,5 +25,5 @@ include_directories("${CMAKE_CURRENT_SOURCE_DIR}/../include"
 link_directories("/usr/local/lib")
 
 add_executable(${PROJECT_NAME} ${SOURCES})
-target_link_libraries(${PROJECT_NAME} divsufsort)
+target_link_libraries(${PROJECT_NAME} divsufsort64)
 # target_link_libraries(${PROJECT_NAME} PRIVATE /usr/local/lib/libdivsufsort64.dylib)
