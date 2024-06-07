@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.27)
+cmake_minimum_required(VERSION 3.18)
 project(dss C)
 
 set(CMAKE_C_STANDARD 11)
@@ -17,16 +17,10 @@ set(INCLUDES
         /usr/local/lib
 )
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
+# add_library(${PROJECT_NAME} SHARED ${SOURCES})
+add_executable(${PROJECT_NAME} main.c)
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDES})
 
-target_link_directories(${PROJECT_NAME} "/usr/local/lib")
+link_directories("/usr/local/lib")
 target_link_libraries(${PROJECT_NAME} divsufsort)
 # target_link_libraries(${PROJECT_NAME} PRIVATE /usr/local/lib/libdivsufsort64.dylib)
-
-
-add_executable(${PROJECT_NAME}-cli main.c)
-add_dependencies(${PROJECT_NAME}-cli ${PROJECT_NAME}) # add library add dependency
-
-target_include_directories(${PROJECT_NAME}-cli PRIVATE ${INCLUDES})
-target_link_libraries(${PROJECT_NAME}-cli PRIVATE ${PROJECT_NAME})
