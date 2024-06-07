@@ -66,16 +66,9 @@ int main(int argc, char **argv) {
         return t;
     }
 
-    sauchar_t *U = malloc(n * sizeof(sauchar_t));
-    if (U == NULL)
+    if ((t = divbwt(T, T, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
     {
-        printf("Missing space for BWT");
-        return -4;
-    }
-
-    if ((t = divbwt(T, U, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
-    {
-        write_memory_to_file_dna(output_filename, (char **) &U, 1);
+        write_memory_to_file_dna(output_filename, (char **) &T, 1);
     }
     else
     {
