@@ -69,11 +69,12 @@ int main(int argc, char **argv) {
     printf("First loaded char: %c\n", *T);
     printf("Loaded %llu characters.\n", (uint64_t) n);
     printf("Compute BWT\n");
-    if ((t = divbwt64(T, T, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
+    sauchar_t *U = malloc(n * sizeof(sauchar_t));
+    if ((t = divbwt64(T, U, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
     {
         printf("BWT computed.\n");
         printf("Writing to file %s.\n", output_filename);
-        write_memory_to_file_dna(output_filename, (char **) &T, 1);
+        write_memory_to_file_dna(output_filename, (char **) &U, 1);
         printf("Done.\n");
     }
     else
@@ -81,5 +82,7 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Divsufsort failed.\n");
         return t;
     }
+    free(T);
+    free(U);
     return 0;
 }
