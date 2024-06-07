@@ -18,7 +18,7 @@ set(INCLUDES
 )
 
 # add_library(${PROJECT_NAME} SHARED ${SOURCES})
-add_executable(${PROJECT_NAME} main.c)
+add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDES})
 
 link_directories("/usr/local/lib")
