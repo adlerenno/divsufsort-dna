@@ -60,17 +60,21 @@ int main(int argc, char **argv) {
     saidx64_t n = 0;
     sauchar_t *T;
     int t;
+    printf("Loading file %s.\n", filename);
     if ((t = load_singleline_file_into_memory_dna(filename, (char **) &T, &n)) < 0)
     {
         printf("Loading file failed.\n");
         return t;
     }
     printf("First loaded char: %c\n", *T);
-    printf("Loaded %d characters.\n", (int) n);
-
+    printf("Loaded %llu characters.\n", (uint64_t) n);
+    printf("Compute BWT\n");
     if ((t = divbwt64(T, T, NULL, n)) == 0) // use divsufsort library, size of alphabet to small
     {
+        printf("BWT computed.\n");
+        printf("Writing to file %s.\n", output_filename);
         write_memory_to_file_dna(output_filename, (char **) &T, 1);
+        printf("Done.\n");
     }
     else
     {
