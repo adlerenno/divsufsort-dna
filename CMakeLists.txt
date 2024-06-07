@@ -20,7 +20,8 @@ set(INCLUDES
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE ${INCLUDES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE divsufsort)
+target_link_directories(${PROJECT_NAME} "/usr/local/lib")
+target_link_libraries(${PROJECT_NAME} divsufsort)
 # target_link_libraries(${PROJECT_NAME} PRIVATE /usr/local/lib/libdivsufsort64.dylib)
 
 
