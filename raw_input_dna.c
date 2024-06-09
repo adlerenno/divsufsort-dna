@@ -26,7 +26,7 @@ int load_singleline_file_into_memory_dna(const char *filename, char **word, said
     char line[1000];
     unsigned long sequenceLength = 0;
     unsigned long current_max_length = 1000000;
-    char terminator = '$';
+    char terminator = '$' + 1;
     word[0] = (char*)malloc(current_max_length * sizeof(char));
 
     // Skip the first line (header line starting with '>')
