@@ -29,11 +29,11 @@ int main(int argc, char **argv) {
                 break;
             case 'o':
                 output_filename = optarg;
-                if (access(output_filename, F_OK) == 0)
-                {
-                    printf("Output file exists already");
-                    return -1;
-                }
+//                if (access(output_filename, F_OK) == 0)
+//                {
+//                    printf("Output file exists already");
+//                    return -1;
+//                }
                 break;
             case 'h':
             default:
