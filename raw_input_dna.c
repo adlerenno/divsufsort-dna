@@ -26,6 +26,7 @@ int load_singleline_file_into_memory_dna(const char *filename, char **word, said
     char line[1000];
     unsigned long sequenceLength = 0;
     unsigned long current_max_length = 1000000;
+    char terminator = '$';
     word[0] = (char*)malloc(current_max_length * sizeof(char));
 
     // Skip the first line (header line starting with '>')
@@ -57,8 +58,10 @@ int load_singleline_file_into_memory_dna(const char *filename, char **word, said
         // sequenceLength += lineLength - 1;  // Exclude the newline character
         for (int64_t i = 0; i < lineLength; i++)  //convert data-block.
         {
-            if (line[i] == '>')
+            if (line[i] == '>') {
+                word[0][sequenceLength++] = terminator;
                 break; // Skip lines with > at the first position.
+            }
             switch (line[i]) {
                 case 'A': case 'C': case 'G': case 'T':
                     word[0][sequenceLength++] = line[i];
