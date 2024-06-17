@@ -11,10 +11,10 @@ Build the 64 bit Version. The following commands should clone and build divsufso
 
 ```bash
 git clone https://github.com/y-256/libdivsufsort.git
-$ cd libdivsufsort
+cd libdivsufsort
 mkdir -p build
 cd build
-$ cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="/usr/local" -DBUILD_DIVSUFSORT64=ON -DUSE_OPENMP=ON ..
+cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="/usr/local" -DBUILD_DIVSUFSORT64=ON -DUSE_OPENMP=ON ..
 make
 sudo make install
 ```
@@ -32,8 +32,8 @@ make
 
 ```
 Usage: ./dss
-    -h                              show this help
-    -i                              input file path. File format is Fasta file
+    -h                              shows help.
+    -i                              input file path. Accepted file format is FASTA file (both one line per read and multiple lines per read)
     -o                              output file path for the BWT.
 
 ```
