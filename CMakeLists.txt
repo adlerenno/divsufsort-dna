@@ -10,7 +10,8 @@ else()
 endif()
 
 option(BUILD_DSS "Build the DSS executable" ON)
-option(BUILD_LIBSAIS "Build the libsais executable" OFF)
+option(BUILD_LIBSAIS "Build the libsais executable" ON)
+option(LIBSAIS_USE_OPENMP "Use OpenMP for parallelization" ON)
 option(BUILD_LIBCUBWT "Build the libcubwt executable" OFF)
 
 set(SOURCES
@@ -39,13 +40,38 @@ if (BUILD_DSS)
 endif ()
 
 if (BUILD_LIBSAIS)
+    set(LIBSAIS_LIBRARY_TYPE STATIC)
+    add_library(libsais ${LIBSAIS_LIBRARY_TYPE})
+    target_sources(libsais PRIVATE
+            include/libsais.h
+            include/libsais16.h
+            include/libsais16x64.h
+            include/libsais64.h
+            src/libsais.c
+            src/libsais16.c
+            src/libsais16x64.c
+            src/libsais64.c
+    )
+
+    if(LIBSAIS_USE_OPENMP)
+        find_package(OpenMP REQUIRED)
+    endif()
+
+    if(LIBSAIS_USE_OPENMP AND OpenMP_C_FOUND)
+        target_compile_definitions(libsais PUBLIC LIBSAIS_OPENMP)
+        target_link_libraries(libsais PRIVATE OpenMP::OpenMP_C)
+    endif()
+
+    target_include_directories(libsais PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+    )
+
     add_executable(libsais ${SOURCES})
     target_compile_definitions(libsais PRIVATE -D_LARGEFILE_SOURCE -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -DLIBSAIS)
     target_include_directories(libsais PRIVATE
             "${CMAKE_CURRENT_SOURCE_DIR}/../include"
             "${CMAKE_CURRENT_BINARY_DIR}/../include")
-
-    target_link_directories(dss PRIVATE "/usr/local/lib")
     target_link_libraries(dss PRIVATE sais64)
 endif()
 
