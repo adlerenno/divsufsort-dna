@@ -50,6 +50,7 @@ int main(int argc, char **argv) {
                     printf("Invalid Thread number given.");
                     return -1;
                 }
+                break;
             case 'h':
             default:
                 printf("Usage: \n\t./%s [-i <input_file>] [-o <output_file>] [-t <thread_count>] \n", argv[0]);
