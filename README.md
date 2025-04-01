@@ -45,5 +45,6 @@ Usage: ./dss
     -h                              shows help.
     -i                              input file path. Accepted file format is FASTA file (both one line per read and multiple lines per read)
     -o                              output file path for the BWT.
+    -t                              number of threads. Only for sais-cli. Default is 1.
 
 ```

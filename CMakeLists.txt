@@ -12,7 +12,7 @@ endif()
 option(BUILD_DSS "Build the DSS executable" ON)
 option(BUILD_LIBSAIS "Build the libsais executable" ON)
 option(LIBSAIS_USE_OPENMP "Use OpenMP for parallelization" ON)
-option(BUILD_LIBCUBWT "Build the libcubwt executable" ON)
+option(BUILD_LIBCUBWT "Build the libcubwt executable" OFF)
 
 set(SOURCES
         main.c
