@@ -7,7 +7,6 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <divsufsort64.h>
 
-int load_singleline_file_into_memory_dna(const char *filename, char **word, saidx64_t *word_length);
+int load_singleline_file_into_memory_dna(const char *filename, char **word, uint64_t *word_length);
 #endif //BWT_RAW_INPUT_DNA_H

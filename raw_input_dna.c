@@ -12,9 +12,8 @@
 #include <assert.h>
 #include <sys/errno.h>
 #include <string.h>
-#include <divsufsort64.h>
 
-int load_singleline_file_into_memory_dna(const char *filename, char **word, saidx64_t *word_length)
+int load_singleline_file_into_memory_dna(const char *filename, char **word, uint64_t *word_length)
 {
     FILE* fastaFile = fopen(filename, "r");
 

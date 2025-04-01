@@ -73,11 +73,11 @@ int main(int argc, char **argv) {
     }
 
 #ifdef DIVSUFSORT
-    saidx64_t n = 0;
-    sauchar_t *T;
+    uint64_t n = 0;
+    char *T;
     int t;
     printf("Loading file %s.\n", filename);
-    if ((t = load_singleline_file_into_memory_dna(filename, (char **) &T, &n)) < 0)
+    if ((t = load_singleline_file_into_memory_dna(filename, &T, &n)) < 0)
     {
         printf("Loading file failed.\n");
         return t;
@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
     printf("First loaded char: %c\n", *T);
     printf("Loaded %llu characters.\n", (uint64_t) n);
     printf("Compute BWT\n");
-    if ((t = divbwt64(T, T, NULL, n)) < 0) // use divsufsort library, size of alphabet to small
+    if ((t = divbwt64(T, T, NULL, (saidx64_t) n)) < 0) // use divsufsort library, size of alphabet to small
     {
         fprintf(stderr, "Divsufsort failed.\n");
         free(T);
@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     {
         printf("BWT computed.\n");
         printf("Writing to file %s.\n", output_filename);
-        write_memory_to_file_dna(output_filename, (char **) &T, 1);
+        write_memory_to_file_dna(output_filename, &T, 1);
         printf("Done.\n");
     }
     free(T);
