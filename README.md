@@ -24,7 +24,7 @@ sudo make install
 ```bash
 mkdir -p build
 cd build
-cmake -DBUILD_DSS -DBUILD_LIBSAIS -DBUILD_LIBCUBWT ..
+cmake -DBUILD_DSS=ON -DBUILD_LIBSAIS=ON -DBUILD_LIBCUBWT=ON ..
 make
 ```
 
