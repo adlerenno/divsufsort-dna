@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include <getopt.h>
 //#include <divsufsort64.h>
+
+#ifdef DIVSUFSORT
 #include <divsufsort64.h>
+#endif
+#ifdef LIBSAIS
+#include "libsais64.h"
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
