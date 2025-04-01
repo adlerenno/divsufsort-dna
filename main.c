@@ -6,7 +6,7 @@
 #include <divsufsort64.h>
 #endif
 #ifdef LIBSAIS
-#include "libsais64.h"
+#include "libsais/include/libsais64.h"
 #endif
 
 #include <stdlib.h>
