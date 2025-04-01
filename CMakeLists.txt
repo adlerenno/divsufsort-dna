@@ -67,12 +67,12 @@ if (BUILD_LIBSAIS)
             $<INSTALL_INTERFACE:include>
     )
 
-    add_executable(libsais ${SOURCES})
-    target_compile_definitions(libsais PRIVATE -D_LARGEFILE_SOURCE -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -DLIBSAIS)
-    target_include_directories(libsais PRIVATE
+    add_executable(sais-cli ${SOURCES})
+    target_compile_definitions(sais-cli PRIVATE -D_LARGEFILE_SOURCE -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -DLIBSAIS)
+    target_include_directories(sais-cli PRIVATE
             "${CMAKE_CURRENT_SOURCE_DIR}/../include"
             "${CMAKE_CURRENT_BINARY_DIR}/../include")
-    target_link_libraries(dss PRIVATE sais64)
+    target_link_libraries(sais-cli PRIVATE sais64)
 endif()
 
 if (BUILD_LIBCUBWT)
