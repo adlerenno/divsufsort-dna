@@ -9,10 +9,10 @@ else()
     set(CMAKE_SHARED_LINKER_FLAGS "-Wl,--no-undefined")
 endif()
 
-option(BUILD_DSS "Build the DSS executable" OFF)
+option(BUILD_DSS "Build the DSS executable" ON)
 option(BUILD_LIBSAIS "Build the libsais executable" ON)
 option(LIBSAIS_USE_OPENMP "Use OpenMP for parallelization" ON)
-option(BUILD_LIBCUBWT "Build the libcubwt executable" OFF)
+option(BUILD_LIBCUBWT "Build the libcubwt executable" ON)
 
 set(SOURCES
         main.c
@@ -40,8 +40,7 @@ if (BUILD_DSS)
 endif ()
 
 if (BUILD_LIBSAIS)
-    set(LIBSAIS_LIBRARY_TYPE STATIC)
-    add_library(libsais ${LIBSAIS_LIBRARY_TYPE})
+    add_library(libsais STATIC)
     target_sources(libsais PRIVATE
             include/libsais.h
             include/libsais16.h
@@ -80,14 +79,24 @@ endif()
 
 if (BUILD_LIBCUBWT)
     enable_language(CUDA)
-    add_executable(libcubwt
-            ${SOURCES}
-            libcubwt/libcubwt.cuh
-            libcubwt/libcubwt.cu)
+    add_library(libcubwt STATIC)
     set_target_properties(libcubwt PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
     target_compile_options(libcubwt PRIVATE -march=native --use_fast_math )
-    target_compile_definitions(libcubwt PRIVATE -D_LARGEFILE_SOURCE -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -DLIBCUBWT)
-    target_include_directories(libcubwt PRIVATE
+    target_sources(libcubwt PRIVATE
+            libcubwt.cuh
+            libcubwt.cu
+    )
+    target_include_directories(libcubwt PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+    )
+
+    add_executable(libcubwt-cli
+            ${SOURCES})
+    set_target_properties(libcubwt-cli PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+    target_compile_definitions(libcubwt-cli PRIVATE -D_LARGEFILE_SOURCE -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -DLIBCUBWT)
+    target_include_directories(libcubwt-cli PRIVATE
             "${CMAKE_CURRENT_SOURCE_DIR}/../include"
             "${CMAKE_CURRENT_BINARY_DIR}/../include")
+    target_link_libraries(libcubwt-cli PRIVATE libcubwt)
 endif()

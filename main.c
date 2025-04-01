@@ -6,7 +6,10 @@
 #include <divsufsort64.h>
 #endif
 #ifdef LIBSAIS
-#include <sais64.h>
+#include <libsais64.h>
+#endif
+#ifdef LIBCUBWT
+#include <libcubwt.cuh>
 #endif
 
 #include <stdlib.h>
