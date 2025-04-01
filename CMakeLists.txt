@@ -38,7 +38,7 @@ if (BUILD_DSS)
 endif ()
 
 if (BUILD_LIBSAIS)
-    add_executable(libsais ${SOURCES} libsais/include/libsais64.h libsais/src/libsais64.c)
+    add_executable(libsais ${SOURCES} libsais/include/libsais.h libsais/src/libsais.c libsais/include/libsais64.h libsais/src/libsais64.c)
     if(OpenMP_C_FOUND)
         target_link_libraries(libsais PRIVATE OpenMP::OpenMP_C)
         target_compile_options(libsais PRIVATE ${OpenMP_C_FLAGS})
