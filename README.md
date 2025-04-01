@@ -6,8 +6,9 @@ Only builds the BWT
 ## Dependencies
 
 - [libdivsufsort](https://github.com/y-256/libdivsufsort) 
+- [libsais](https://github.com/IlyaGrebnov/libsais)
 
-Build the 64 bit Version. The following commands should clone and build divsufsort properly:
+Build the 64 bit Version of divsufsort. The following commands should clone and build divsufsort properly:
 
 ```bash
 git clone https://github.com/y-256/libdivsufsort.git
@@ -17,6 +18,15 @@ cd build
 cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="/usr/local" -DBUILD_DIVSUFSORT64=ON -DUSE_OPENMP=ON ..
 make
 sudo make install
+```
+
+```bash
+git clone https://github.com/IlyaGrebnov/libsais.git
+cd libsais
+mkdir -p build
+cd build
+cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="/usr/local" -DLIBSAIS_USE_OPENMP=ON -DLIBSAIS_BUILD_SHARED_LIB=ON ..
+make
 ```
 
 ## Build

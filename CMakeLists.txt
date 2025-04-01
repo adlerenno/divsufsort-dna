@@ -39,21 +39,14 @@ if (BUILD_DSS)
 endif ()
 
 if (BUILD_LIBSAIS)
-    add_executable(libsais
-            ${SOURCES}
-            libsais/include/libsais.h
-            libsais/include/libsais64.h
-            libsais/src/libsais64.c
-            libsais/src/libsais.c)
-    if(OpenMP_C_FOUND)
-        target_link_libraries(libsais PRIVATE OpenMP::OpenMP_C)
-        target_compile_options(libsais PRIVATE ${OpenMP_C_FLAGS})
-    endif()
-    target_compile_options(libsais PRIVATE -Ofast -march=skylake -DNDEBUG)
+    add_executable(libsais ${SOURCES})
     target_compile_definitions(libsais PRIVATE -D_LARGEFILE_SOURCE -D_LARGE_FILES -D_FILE_OFFSET_BITS=64 -DLIBSAIS)
     target_include_directories(libsais PRIVATE
             "${CMAKE_CURRENT_SOURCE_DIR}/../include"
             "${CMAKE_CURRENT_BINARY_DIR}/../include")
+
+    target_link_directories(dss PRIVATE "/usr/local/lib")
+    target_link_libraries(dss PRIVATE sais64)
 endif()
 
 if (BUILD_LIBCUBWT)
