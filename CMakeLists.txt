@@ -60,6 +60,9 @@ if (BUILD_LIBSAIS)
     if(LIBSAIS_USE_OPENMP AND OpenMP_C_FOUND)
         target_compile_definitions(libsais PUBLIC LIBSAIS_OPENMP)
         target_link_libraries(libsais PRIVATE OpenMP::OpenMP_C)
+        message("OpenMP found.")
+    else()
+        message(""OpenMP not found.)
     endif()
 
     target_include_directories(libsais PUBLIC
