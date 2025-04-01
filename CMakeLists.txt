@@ -72,7 +72,8 @@ if (BUILD_LIBSAIS)
     target_include_directories(sais-cli PRIVATE
             "${CMAKE_CURRENT_SOURCE_DIR}/../include"
             "${CMAKE_CURRENT_BINARY_DIR}/../include")
-    target_link_libraries(sais-cli PRIVATE sais64)
+    target_link_libraries(sais-cli PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    target_link_libraries(sais-cli PRIVATE liblibsais.a)
 endif()
 
 if (BUILD_LIBCUBWT)
